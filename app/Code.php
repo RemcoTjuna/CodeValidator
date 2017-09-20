@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Code extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, UUID;
 
     protected $fillable = ['code', 'valid_until'];
     protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
     protected $dates = ['deleted_at'];
-    protected $timestamps = true;
+    public $timestamps = true;
 
     protected static function boot(){
         parent::boot();
@@ -29,7 +29,7 @@ class Code extends Model
     }
 
     public function canUse(){
-        return !$this->trashed() && $this->isValid();
+        return !$this->trashed() && $this->isValid() && $this->hasValidUUID($this);
     }
 
     public function isValid(){

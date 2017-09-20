@@ -18,6 +18,6 @@ class CodeScope implements Scope
 
     public function apply(Builder $builder, Model $model)
     {
-        $builder::onlyTrashed();
+        $model::onlyTrashed();
     }
 }
