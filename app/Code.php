@@ -13,7 +13,6 @@ class Code extends Model
     protected $fillable = ['code', 'valid_until'];
     protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
     protected $dates = ['deleted_at'];
-    public $timestamps = true;
 
     protected static function boot(){
         parent::boot();
@@ -28,7 +27,7 @@ class Code extends Model
         return $this->valid_until;
     }
 
-    public function canUse(){
+    public function scopeCanUse(){
         return !$this->trashed() && $this->isValid() && $this->hasValidUUID($this);
     }
 
