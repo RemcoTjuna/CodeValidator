@@ -40,15 +40,16 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@composer update"
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@composer update",
-            "@php artisan package:discover"
+            "@php artisan package:discover",
+            "@php artisan migrate"
         ]
     },
     "config": {
