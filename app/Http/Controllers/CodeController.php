@@ -81,11 +81,12 @@ class CodeController extends Controller
         $code = Code::where('uuid', $request['uuid'])->first();
         if(!is_null($code)) {
             if ($code->can_use) {
-                $code->delete();
+                $request->session()->put('code', true);
                 flash('Je hebt een juiste code ingevoerd!')->success();
-                return back();
+            }else {
+                flash('Je code is niet meer geldig, probeer een andere code!')->error();
             }
-            flash('Je code is niet meer geldig, probeer een andere code!')->error();
+            $code->delete();
             return back();
         }
         flash('Deze code is niet bekend bij ons.')->error();

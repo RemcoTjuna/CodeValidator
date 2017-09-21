@@ -1,5 +1,5 @@
 .header {
-  background-color: lightgrey;
+  background-color: #FFE215;
   display: flex;
   flex-direction: column;
   flex-flow: row wrap;
@@ -9,29 +9,27 @@
     flex-flow: row wrap;
     justify-content: flex-end;
     padding-right: 5px;
-    flex: 0 20%;
+    flex: 0 0 20%;
 
     a {
       text-decoration: none;
       display: block;
-      color: black;
       padding: 5px;
       min-width: 50px;
       cursor: pointer;
       text-align: center;
+      color: black;
     }
 
     a:hover {
-      background: darken(lightgrey, 5%);
+      background: #E5BF0D;
     }
   }
 
   .description {
     flex: 1;
-    padding-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 20px;
+    padding: 5px 5px 5px 20px;
+
   }
 
 }
