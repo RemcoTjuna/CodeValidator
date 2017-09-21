@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Code;
+use App\Rules\ValidUUIDRule;
 use Illuminate\Http\Request;
 
 class CodeController extends Controller
@@ -30,7 +31,7 @@ class CodeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -39,7 +40,7 @@ class CodeController extends Controller
             'uuid' => 'required|unique:codes|max:37|min:16',
             'content' => 'required',
             'valid_until' => 'nullable|date'
-        ],[
+        ], [
             'uuid.required' => "Je moet een code opgeven.",
             'uuid.unique' => "Deze code is al gebruikt.",
             'uuid.max' => "Je code is te lang, je code moet 37 tekens of 17 tekens lang zijn.",
@@ -48,42 +49,42 @@ class CodeController extends Controller
             'valid_until.date' => "De datum tot wanneer de code geldig is moet een datum zijn."
         ]);
 
-        $code = new Code;
-        $code->uuid = $request['content'];
-        $code->content = $request['content'];
-        $code->valid_until = $request['content'];
+        $code = Code::create([
+            'uuid' => $request['content'],
+            'content' => $request['content'],
+            'valid_until' => $request['valid_until'],
+        ]);
 
-        if($code->isValid()){
-            $code->save();
+        if($code->can_use){
             //TODO: Flash Request
-            return back();
+        }else {
+            flash('Deze code is niet te gebruiken.')->error();
         }
-        //TODO: Flash Request
         return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Code  $code
+     * @param  \App\Code $code
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
     {
         $request->validate([
             'uuid' => 'required|max:37|min:16'
-        ],[
+        ], [
             'uuid.required' => "Je moet een code opgeven.",
             'uuid.max' => "Je code is te lang, je code moet 37 tekens of 17 tekens lang zijn.",
             'uuid.min' => "Je code is te kort, je code moet 37 tekens of 17 tekens lang zijn."
         ]);
 
         $code = Code::where('uuid', $request['uuid'])->first();
-        if(!is_null($code)) {
+        if (!is_null($code)) {
             if ($code->can_use) {
                 $request->session()->put('code', true);
                 flash('Je hebt een juiste code ingevoerd!')->success();
-            }else {
+            } else {
                 flash('Je code is niet meer geldig, probeer een andere code!')->error();
             }
             $code->delete();
@@ -96,7 +97,7 @@ class CodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Code  $code
+     * @param  \App\Code $code
      * @return \Illuminate\Http\Response
      */
     public function edit(Code $code)
@@ -107,8 +108,8 @@ class CodeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Code  $code
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Code $code
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Code $code)
@@ -119,7 +120,7 @@ class CodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Code  $code
+     * @param  \App\Code $code
      * @return \Illuminate\Http\Response
      */
     public function destroy(Code $code)

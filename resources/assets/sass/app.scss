@@ -21,7 +21,11 @@ body {
     flex-flow: column wrap;
 
     .result {
-      margin-top: 50px;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
       flex: 0 0 700px;
       display: flex;
       align-self: center;
@@ -29,6 +33,7 @@ body {
 
       .alert {
         margin-bottom: 0 !important;
+        animation: jump-in 1.2s ease-in-out 0s;
       }
 
       .code_form {
