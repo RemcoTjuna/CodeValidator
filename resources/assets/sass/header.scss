@@ -1,0 +1,50 @@
+.header {
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  flex: 1 100%;
+  flex-flow: row wrap;
+
+  .navigation {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    padding-right: 5px;
+    flex: 0 20%;
+
+    a {
+      text-decoration: none;
+      display: block;
+      color: black;
+      padding: 5px;
+      width: 50px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    a:hover {
+      background: darken(lightgrey, 5%);
+    }
+  }
+
+  .description {
+    flex: 1;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+  }
+
+}
+
+@media all and (max-width: 800px) {
+  .header .navigation  {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .header .navigation  {
+    flex-direction: column;
+  }
+}

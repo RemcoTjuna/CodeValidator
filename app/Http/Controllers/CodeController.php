@@ -35,7 +35,31 @@ class CodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'uuid' => 'required|unique:codes|max:37|min:17',
+            'content' => 'required',
+            'valid_until' => 'nullable|date'
+        ],[
+            'uuid.required' => "Je moet een code opgeven.",
+            'uuid.unique' => "Deze code is al gebruikt.",
+            'uuid.max' => "Je code is te lang, je code moet 37 tekens of 17 tekens lang zijn.",
+            'uuid.min' => "Je code is te kort, je code moet 37 tekens of 17 tekens lang zijn.",
+            'content.required' => "Je moet opgeven wat de gebruiker zal winnen.",
+            'valid_until.date' => "De datum tot wanneer de code geldig is moet een datum zijn."
+        ]);
+
+        $code = new Code;
+        $code->uuid = $request['content'];
+        $code->content = $request['content'];
+        $code->valid_until = $request['content'];
+
+        if($code->isValid()){
+            $code->save();
+            //TODO: Flash Request
+            return back();
+        }
+        //TODO: Flash Request
+        return back();
     }
 
     /**

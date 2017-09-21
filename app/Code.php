@@ -16,27 +16,31 @@ class Code extends Model
 
     protected static function boot(){
         parent::boot();
-        static::addGlobalScope(new CodeScope());
     }
 
     public function getCode(){
         return $this->code;
     }
 
+    public function getContent(){
+        return $this->content;
+    }
+
     public function validUntil(){
         return $this->valid_until;
     }
 
-    public function scopeCanUse(){
+    public function canUse(){
         return !$this->trashed() && $this->isValid() && $this->hasValidUUID($this);
+    }
+
+    public function generateUUID(){
+        return $this->generate('UUIDv4');
     }
 
     public function isValid(){
         if(!is_null($this->valid_until)){
             $now = Carbon::now();
-            if($this->valid_until instanceof Carbon){
-                return $now->lt($this->valid_until);
-            }
             return $now->lt(new Carbon($this->valid_until));
         }
         return true;
