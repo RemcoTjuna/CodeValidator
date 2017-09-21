@@ -31,7 +31,7 @@ trait UUID
         return false;
     }
 
-    public function generate($type)
+    public static function generate($type)
     {
         switch (strtoupper($type)) {
             default:

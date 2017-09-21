@@ -2,7 +2,6 @@
   background-color: lightgrey;
   display: flex;
   flex-direction: column;
-  flex: 1 100%;
   flex-flow: row wrap;
 
   .navigation {
@@ -17,7 +16,7 @@
       display: block;
       color: black;
       padding: 5px;
-      width: 50px;
+      min-width: 50px;
       cursor: pointer;
       text-align: center;
     }
@@ -37,14 +36,20 @@
 
 }
 
-@media all and (max-width: 800px) {
-  .header .navigation  {
-    justify-content: space-around;
-  }
-}
 
-@media all and (max-width: 500px) {
-  .header .navigation  {
-    flex-direction: column;
+@media all and (max-width: 800px) {
+  .header {
+    .navigation, .description{
+      flex: 1 100%;
+    }
+
+    .navigation a {
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    .description{
+      text-align: center;
+    }
   }
 }

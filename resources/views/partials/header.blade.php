@@ -1,9 +1,9 @@
 <div class="header">
     <div class="description">
-        Description here
+        Code Checker, wat heb jij gewonnen?
     </div>
     <div class="navigation">
-        <a>Test</a>
-        <a>Test</a>
+        <a>Contact</a>
+        <a>Prijzen</a>
     </div>
 </div>

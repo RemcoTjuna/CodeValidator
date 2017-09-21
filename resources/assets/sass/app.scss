@@ -1,16 +1,79 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
 @import "footer";
 @import "header";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-.codechecker {
+html, body {
+  height: 100%;
+}
+
+body {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
+  background-color: white;
+  .container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column wrap;
+
+    .result {
+      margin-top: 50px;
+      border: solid black 1px;
+      flex: 0 0 700px;
+      display: flex;
+      align-self: center;
+      flex-flow: column wrap;
+      width: 800px;
+
+      .status{
+        margin-top: 0;
+      }
+
+      .code_form {
+        margin-top: 5px;
+        border: solid black 1px;
+        width: 620px;
+        flex: 0 0 50px;
+        display: flex;
+        align-self: center;
+        border-radius: 5px;
+
+        .form-control {
+          display: flex;
+          flex: 1 0 100%;
+          justify-content: flex-end;
+          line-height: 30px;
+          border: none;
+
+          input {
+            flex: 0;
+            width: 450px;
+          }
+
+          button {
+            flex: 0;
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .result {
+    margin-top: 10px !important;
+    .form-control {
+      padding-top: 10px !important;
+
+      button {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
 }

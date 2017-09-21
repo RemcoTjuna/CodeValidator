@@ -13,6 +13,9 @@ class Code extends Model
     protected $fillable = ['code', 'valid_until'];
     protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
     protected $dates = ['deleted_at'];
+    protected $casts = [
+        'can_use' => "boolean"
+    ];
 
     protected static function boot(){
         parent::boot();
@@ -22,20 +25,12 @@ class Code extends Model
         return $this->code;
     }
 
-    public function getContent(){
-        return $this->content;
+    public function getCanUseAttribute(){
+       return !$this->trashed() && $this->isValid();
     }
 
-    public function validUntil(){
-        return $this->valid_until;
-    }
-
-    public function canUse(){
-        return !$this->trashed() && $this->isValid() && $this->hasValidUUID($this);
-    }
-
-    public function generateUUID(){
-        return $this->generate('UUIDv4');
+    public static function generateUUID(){
+        return static::generate('UUIDv4');
     }
 
     public function isValid(){

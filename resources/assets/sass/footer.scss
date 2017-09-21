@@ -1,0 +1,21 @@
+.footer {
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+
+
+  .description {
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+  }
+
+}
+
+@media all and (max-width: 800px) {
+  .footer .description  {
+    justify-content: space-around;
+  }
+}

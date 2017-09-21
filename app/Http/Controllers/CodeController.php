@@ -36,7 +36,7 @@ class CodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'uuid' => 'required|unique:codes|max:37|min:17',
+            'uuid' => 'required|unique:codes|max:37|min:16',
             'content' => 'required',
             'valid_until' => 'nullable|date'
         ],[
@@ -68,9 +68,28 @@ class CodeController extends Controller
      * @param  \App\Code  $code
      * @return \Illuminate\Http\Response
      */
-    public function show(Code $code)
+    public function show(Request $request)
     {
-        //
+        $request->validate([
+            'uuid' => 'required|max:37|min:16'
+        ],[
+            'uuid.required' => "Je moet een code opgeven.",
+            'uuid.max' => "Je code is te lang, je code moet 37 tekens of 17 tekens lang zijn.",
+            'uuid.min' => "Je code is te kort, je code moet 37 tekens of 17 tekens lang zijn."
+        ]);
+
+        $code = Code::where('uuid', $request['uuid'])->first();
+        if(!is_null($code)) {
+            if ($code->can_use) {
+                $code->delete();
+                flash('Je hebt een juiste code ingevoerd!')->success();
+                return back();
+            }
+            flash('Je code is niet meer geldig, probeer een andere code!')->error();
+            return back();
+        }
+        flash('Deze code is niet bekend bij ons.')->error();
+        return back();
     }
 
     /**
