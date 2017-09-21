@@ -1,9 +1,130 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
-
+@import "footer";
+@import "header";
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+html, body {
+  height: 100%;
+  color: black;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  .container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column wrap;
+
+    .result {
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      flex: 0 0 700px;
+      display: flex;
+      align-self: center;
+      flex-flow: column wrap;
+
+      .alert {
+        margin-bottom: 0 !important;
+        animation: jump-in 1.2s ease-in-out 0s;
+      }
+
+      .code_form {
+        background-color: #FFE215;
+        width: 700px;
+        flex: 0 0 auto;
+        display: flex;
+        align-self: center;
+        border-radius: 5px;
+        border: 1px solid darken(#FFE215, 5%);
+        animation: jump-in 1.2s ease-in-out 0s;
+        padding-bottom: 45px;
+        flex-direction: column;
+
+        .explanation {
+          flex: 0 0 50px;
+          padding-left: 30px;
+          h1 {
+            padding-left: 15px;
+          }
+          p, div, h2, h3, h4 {
+            padding-left: 5px;
+          }
+        }
+
+        .form-control {
+          background-color: transparent;
+          box-shadow: none;
+          display: flex;
+          flex: 1 0 100%;
+          align-self: flex-end;
+          justify-content: flex-end;
+          line-height: 60px;
+          border: none;
+
+          input {
+            flex: 0;
+            width: 590px;
+          }
+
+          button {
+            flex: 0;
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .result {
+    margin-top: 10px !important;
+    .form-control {
+      padding-top: 10px !important;
+
+      button {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+@keyframes jump-in {
+  0% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  5% {
+    transform: translateY(-120px);
+    opacity: 0.2;
+  }
+  10% {
+    transform: translateY(-90px);
+    opacity: 0.3;
+  }
+  15% {
+    transform: translateY(-60px);
+    opacity: 0.5
+  }
+  20% {
+    transform: translateY(-30px);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(15px);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

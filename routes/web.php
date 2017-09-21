@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.insert_code');
 });
+
+Route::post('/code', "CodeController@show");
