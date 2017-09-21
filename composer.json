@@ -46,7 +46,6 @@
             "@php artisan key:generate"
         ],
         "post-autoload-dump": [
-            "@composer update",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
