@@ -93,6 +93,8 @@ class CodeController extends Controller
         if (!is_null($code)) {
             if ($code->can_use) {
                 $this->wrapper->addData("code", $code->uuid);
+                $this->wrapper->addData("content", $code->content);
+                $this->wrapper->addData("form", true);
                 session(['code' => $this->wrapper->sign()]);
                 flash('Je hebt een juiste code ingevoerd!')->success();
             } else {

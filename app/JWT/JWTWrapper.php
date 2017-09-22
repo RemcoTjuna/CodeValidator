@@ -3,13 +3,14 @@
 namespace App\JWT;
 
 use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Claim\Basic;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Hmac\Sha384;
 use Lcobucci\JWT\Signer\Hmac\Sha512;
 
 class JWTWrapper implements JWTCredentials
 {
-    private $data = [];
+    public $data = array();
 
     public function getAlgorithm()
     {
@@ -65,8 +66,8 @@ class JWTWrapper implements JWTCredentials
     public function build()
     {
         $builder = (new Builder())//->setIssuer(self::getIssuer())
-            //->setAudience(self::getAudience())
-            ->setId(self::getID())
+        //->setAudience(self::getAudience())
+        ->setId(self::getID())
             ->setIssuedAt(time())
             ->setExpiration(time() + self::getExpiration());
 
@@ -79,9 +80,18 @@ class JWTWrapper implements JWTCredentials
 
     public static function verify($token, JWTWrapper $wrapper)
     {
-        var_dump($token);
-        var_dump($wrapper->getSecret());
-        return $token->verify($wrapper->toTester(), $wrapper->isBase64Encoded() ? base64_encode($wrapper->getSecret()) : $wrapper->getSecret());
+        $verify = $token->verify($wrapper->toTester(), $wrapper->isBase64Encoded() ? base64_encode($wrapper->getSecret()) : $wrapper->getSecret());
+        if ($verify) {
+            return [
+                'valid' => $verify,
+                'content' => array_map(function ($key) use ($token) {
+                    if(is_array($key->getValue())){
+                        return $key->getValue();
+                    }
+                    return $key->getValue();
+                }, $token->getClaims())
+            ];
+        }
     }
 
     public function sign()

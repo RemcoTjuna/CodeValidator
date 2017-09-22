@@ -18,17 +18,25 @@ class JWTMiddleware
     public function handle($request, Closure $next)
     {
         $code = session('code');
-        if($code) {
+        if ($code) {
+            $verify = JWTWrapper::verify($code, App::make('App\JWT\JWTWrapper'));
+            if ($verify['valid']) {
+                $data = array();
 
-            dd(App::make('App\JWT\JWTWrapper'));
-            if(JWTWrapper::verify($code, App::make('App\JWT\JWTWrapper'))){
+                foreach ($verify['content'] as $value) {
+                    if (is_array($value)) {
+                        foreach (array_keys($value) as $embeddedKey) {
+                            array_push($data, [$embeddedKey => $value[$embeddedKey]]);
+                        }
+                    }
+                }
 
+                return response(view('guest.insert_code',
+                    array_merge(...array_map(function ($key) {
+                        return $key;
+                    }, $data))), 200);
             }
-            //Validate
-        //    return view('guest.insert_code')->with('form', true);
-
-            dd(JWTWrapper::verify($code, App::make('App\JWT\JWTWrapper')));
-            return response(JWTWrapper::verify($code, App::make('App\JWT\JWTWrapper')), 200);
+            session()->remove('code');
         }
         return $next($request);
     }
