@@ -46,8 +46,7 @@ abstract class Enum
     }
 
     public static function valueOf($key){
-        $values = array_values(self::values());
-        return $values[$key];
+        return self::values()[$key];
     }
 
 }

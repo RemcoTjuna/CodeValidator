@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\JWT\JWTCredentialWrapper;
+use App\JWT\JWTWrapper;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,8 +17,8 @@ class JWTTokenService extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('App\JWT\JWTCredentialWrapper', function($app){
-            return new JWTCredentialWrapper();
+        $this->app->singleton('App\JWT\JWTWrapper', function($app){
+            return new JWTWrapper();
         });
     }
 }
