@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('guest.insert_code');
 });
 
-$jwt = App::make('App\JWT\JWTWrapper');
-
 Route::post('/code', "CodeController@show");
