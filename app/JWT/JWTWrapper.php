@@ -65,8 +65,8 @@ class JWTWrapper implements JWTCredentials
 
     public function build()
     {
-        $builder = (new Builder())//->setIssuer(self::getIssuer())
-        //->setAudience(self::getAudience())
+        $builder = (new Builder())->setIssuer(self::getIssuer())
+        ->setAudience(self::getAudience())
         ->setId(self::getID())
             ->setIssuedAt(time())
             ->setExpiration(time() + self::getExpiration());
