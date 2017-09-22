@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Code;
-use App\Rules\ValidUUIDRule;
+use App\JWT\JWTWrapper;
 use Illuminate\Http\Request;
 
 class CodeController extends Controller
 {
+
+    protected $wrapper;
+
+    public function __construct(JWTWrapper $wrapper)
+    {
+        $this->wrapper = $wrapper;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +44,7 @@ class CodeController extends Controller
      */
     public function store(Request $request)
     {
+        //TODO: To Request Handler
         $request->validate([
             'uuid' => 'required|unique:codes|max:37|min:16',
             'content' => 'required',
@@ -71,6 +80,7 @@ class CodeController extends Controller
      */
     public function show(Request $request)
     {
+        //TODO: To Request Handler
         $request->validate([
             'uuid' => 'required|max:37|min:16'
         ], [

@@ -2,19 +2,13 @@
 
 namespace App\Providers;
 
+use App\JWT\JWTCredentialWrapper;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
+
 
 class JWTTokenService extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
 
     /**
      * Register the application services.
@@ -23,6 +17,8 @@ class JWTTokenService extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('App\JWT\JWTCredentialWrapper', function($app){
+            return new JWTCredentialWrapper();
+        });
     }
 }
