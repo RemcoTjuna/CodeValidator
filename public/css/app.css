@@ -8481,9 +8481,6 @@ body .container .result {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 700px;
-          flex: 0 0 700px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8504,9 +8501,9 @@ body .container .result .alert {
 body .container .result .code_form {
   background-color: #FFE215;
   width: 700px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

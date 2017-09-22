@@ -26,7 +26,6 @@ body {
       left: 50%;
       transform: translate(-50%, -50%);
 
-      flex: 0 0 700px;
       display: flex;
       align-self: center;
       flex-flow: column wrap;
@@ -39,7 +38,7 @@ body {
       .code_form {
         background-color: #FFE215;
         width: 700px;
-        flex: 0 0 auto;
+        flex: 1 0 100%;
         display: flex;
         align-self: center;
         border-radius: 5px;

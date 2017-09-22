@@ -30,14 +30,15 @@ class JWTMiddleware
                         }
                     }
                 }
+                $data = array_merge(...array_map(function ($key) {
+                    return $key;
+                }, $data));
 
-                return response(view('guest.insert_code',
-                    array_merge(...array_map(function ($key) {
-                        return $key;
-                    }, $data))), 200);
+                return response(view('guest.insert_code', $data), 200);
             }
             session()->remove('code');
         }
+        view()->share('form', false);
         return $next($request);
     }
 }
