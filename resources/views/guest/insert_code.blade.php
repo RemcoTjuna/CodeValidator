@@ -18,6 +18,8 @@
                 <div class="form-control">
                     <form method="POST" action="/mail">
                         {{csrf_field()}}
+                        <input type="hidden" id="code" name="code" value="{{$code}}"/>
+                        <input type="hidden" id="token" name="token" value="{{$token}}"/>
                         <input type="text" id="firstname" name="firstname" required placeholder="Voer hier je voornaam in">
                         <input type="text" id="lastname" name="lastname" required placeholder="Voer hier je achternaam in">
                         <input type="number" id="age" name="age" required placeholder="Voer hier je leeftijd in" min="0" max="100">

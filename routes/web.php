@@ -17,3 +17,4 @@ Route::get('/', function () {
 });
 
 Route::post('/code', "CodeController@show");
+Route::post('/mail', "MailController@send");

@@ -21,7 +21,7 @@ class JWTMiddleware
         if ($code) {
             $verify = JWTWrapper::verify($code, App::make('App\JWT\JWTWrapper'));
             if ($verify['verify'] && $verify['validate']) {
-                $data = array();
+                $data = array(['token' => $code]);
 
                 foreach ($verify['content'] as $value) {
                     if (is_array($value)) {
