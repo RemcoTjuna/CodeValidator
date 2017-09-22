@@ -8496,6 +8496,9 @@ body .container .result .alert {
   margin-bottom: 0 !important;
   -webkit-animation: jump-in 1.2s ease-in-out 0s;
           animation: jump-in 1.2s ease-in-out 0s;
+  position: absolute;
+  top: -55px;
+  width: 700px;
 }
 
 body .container .result .code_form {
