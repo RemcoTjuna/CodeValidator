@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "85daa53a7d4c5d7c1818c8f8d00755b7",
+    "content-hash": "cc7ff8f97b3a130c899cf262ccf47785",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -260,6 +260,75 @@
             "time": "2017-05-14T14:47:48+00:00"
         },
         {
+            "name": "fgrosse/phpasn1",
+            "version": "1.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fgrosse/PHPASN1.git",
+                "reference": "a18b162eca6aa70f8f15615f4ac8c852dffbc7dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fgrosse/PHPASN1/zipball/a18b162eca6aa70f8f15615f4ac8c852dffbc7dd",
+                "reference": "a18b162eca6aa70f8f15615f4ac8c852dffbc7dd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gmp": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "suggest": {
+                "php-curl": "For loading OID information from the web if they have not bee defined statically"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FG\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Friedrich Große",
+                    "email": "friedrich.grosse@gmail.com",
+                    "homepage": "https://github.com/FGrosse",
+                    "role": "Author"
+                },
+                {
+                    "name": "All contributors",
+                    "homepage": "https://github.com/FGrosse/PHPASN1/contributors"
+                }
+            ],
+            "description": "A PHP Framework that allows you to encode and decode arbitrary ASN.1 structures using the ITU-T X.690 Encoding Rules.",
+            "homepage": "https://github.com/FGrosse/PHPASN1",
+            "keywords": [
+                "DER",
+                "asn.1",
+                "asn1",
+                "ber",
+                "binary",
+                "decoding",
+                "encoding",
+                "x.509",
+                "x.690",
+                "x509",
+                "x690"
+            ],
+            "time": "2016-10-29T15:46:46+00:00"
+        },
+        {
             "name": "fideloper/proxy",
             "version": "3.3.4",
             "source": {
@@ -402,6 +471,46 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "jdr/jws-ecdsa",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johanderuijter/jws-ecdsa.git",
+                "reference": "fce142101693baf52f3f659d6aaada49bd059872"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johanderuijter/jws-ecdsa/zipball/fce142101693baf52f3f659d6aaada49bd059872",
+                "reference": "fce142101693baf52f3f659d6aaada49bd059872",
+                "shasum": ""
+            },
+            "require": {
+                "lcobucci/jwt": "~3.0, >=3.0.4",
+                "mdanter/ecc": "~0.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JDR\\JWS\\ECDSA\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johan de Ruijter",
+                    "email": "dev@johanderuijter.nl"
+                }
+            ],
+            "description": "ECDSA signers for lcobucci/jwt",
+            "time": "2016-12-01T20:22:41+00:00"
         },
         {
             "name": "laracasts/flash",
@@ -792,6 +901,72 @@
                 "storage"
             ],
             "time": "2017-08-06T17:41:04+00:00"
+        },
+        {
+            "name": "mdanter/ecc",
+            "version": "v0.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpecc/phpecc.git",
+                "reference": "fdd1fa9be8184c9f319433437cb1d9f9d4294164"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpecc/phpecc/zipball/fdd1fa9be8184c9f319433437cb1d9f9d4294164",
+                "reference": "fdd1fa9be8184c9f319433437cb1d9f9d4294164",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gmp": "*",
+                "fgrosse/phpasn1": "~1.5",
+                "paragonie/random_compat": "^1|^2",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1|~5.0",
+                "squizlabs/php_codesniffer": "~2",
+                "symfony/yaml": "~2.6|~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mdanter\\Ecc\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matyas Danter",
+                    "homepage": "http://matejdanter.com/",
+                    "role": "Author"
+                },
+                {
+                    "name": "Thibaud Fabre",
+                    "email": "thibaud@aztech.io",
+                    "homepage": "http://aztech.io",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "PHP Elliptic Curve Cryptography library",
+            "homepage": "https://github.com/phpecc/phpecc",
+            "keywords": [
+                "Diffie",
+                "ECDSA",
+                "Hellman",
+                "curve",
+                "ecdh",
+                "elliptic",
+                "nistp192",
+                "nistp224",
+                "nistp256",
+                "nistp521",
+                "phpecc",
+                "secp256k1"
+            ],
+            "time": "2017-01-04T12:13:24+00:00"
         },
         {
             "name": "monolog/monolog",
