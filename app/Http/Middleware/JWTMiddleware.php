@@ -34,7 +34,6 @@ class JWTMiddleware
                     return $key;
                 }, $data));
 
-                return response($data, 200);
                 return response(view('guest.insert_code', $data), 200);
             }
             session()->remove('code');
