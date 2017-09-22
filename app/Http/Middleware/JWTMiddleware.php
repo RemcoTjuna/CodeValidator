@@ -20,7 +20,7 @@ class JWTMiddleware
         $code = session('code');
         if ($code) {
             $verify = JWTWrapper::verify($code, App::make('App\JWT\JWTWrapper'));
-            if ($verify['valid']) {
+            if ($verify['verify'] && $verify['validate']) {
                 $data = array();
 
                 foreach ($verify['content'] as $value) {
@@ -34,6 +34,7 @@ class JWTMiddleware
                     return $key;
                 }, $data));
 
+                return response($data, 200);
                 return response(view('guest.insert_code', $data), 200);
             }
             session()->remove('code');

@@ -8563,6 +8563,7 @@ body .container .result .code_form .form-control input {
       -ms-flex: 0;
           flex: 0;
   width: 590px;
+  padding-left: 5px;
 }
 
 body .container .result .code_form .form-control button {

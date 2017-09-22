@@ -7,6 +7,7 @@ use Lcobucci\JWT\Claim\Basic;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Hmac\Sha384;
 use Lcobucci\JWT\Signer\Hmac\Sha512;
+use Lcobucci\JWT\ValidationData;
 
 class JWTWrapper implements JWTCredentials
 {
@@ -78,12 +79,22 @@ class JWTWrapper implements JWTCredentials
         return $builder;
     }
 
+    public function buildValidationData(){
+        $data = new ValidationData();
+        $data->setIssuer(self::getIssuer());
+        $data->setAudience(self::getAudience());
+        $data->setId(self::getID());
+        return $data;
+    }
+
     public static function verify($token, JWTWrapper $wrapper)
     {
         $verify = $token->verify($wrapper->toTester(), $wrapper->isBase64Encoded() ? base64_encode($wrapper->getSecret()) : $wrapper->getSecret());
+        $validate = $token->validate($wrapper->buildValidationData());
         if ($verify) {
             return [
-                'valid' => $verify,
+                'verify' => $verify,
+                'validate' => $validate,
                 'content' => array_map(function ($key) use ($token) {
                     if(is_array($key->getValue())){
                         return $key->getValue();
